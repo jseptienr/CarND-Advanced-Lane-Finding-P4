@@ -4,10 +4,10 @@ The goal for this project is to create a pipeline for processing road images and
 detect the lane on the road using computer vision methods. In the following sections, I explain the different steps taken to implement a successful detection pipeline.
 
 The submission consists of the following files:
-* writeup.md - you are reading it!
+* README.md - writeup for the project
 * AdvancedLaneLines.ipynb - contains the code used in the project
 * output_images - folder containing sample output
-* project_output.mp4 - processed project video using the pipeline
+* project_output1.mp4 - processed project video using the pipeline
 
 
 ## Camera calibration
@@ -20,6 +20,8 @@ can then be used to undistort an image using the undistort function.Here is an e
 ![Checkboard Undistorted](output_images/check_undist.png)
 
 We can  use these values to undistort road images:
+
+![Checkboard Undistorted](output_images/undist_rd.png)
 
 ## Color and Gradient thresholds
 Once we have undistorted images we can begin applying color and gradient
@@ -91,8 +93,7 @@ defined margin so that the blind search doesn't have to be repeated.
 
 ## Curvature and Position Calculation
 After obtaining a fit to the left and right lines on the road, we can use these
-values to calculate the curvature and position of the lane. We use the curvature formula using scaled values for the pixel line fit to match actual measurement in meters. The same scaling is applyied when calculating the position of the vehicle
-by computing the center of the lane in relationship to the absolute center of the image assuming that the camera is right at the center of the car.
+values to calculate the curvature and position of the lane. We use the curvature formula using scaled values for the pixel line fit to match actual measurement in meters. In other words, we use a conversion factor of 30/720 meter per pixels in the y direction and 3.7/700 meters per pixels in the x direction The same scaling is applied when calculating the position of the vehicle by computing the center of the lane in relationship to the absolute center of the image assuming that the camera is right at the center of the car.
 
 ## Unwarp Detection
 The last step is to unwarp the processed image to have the original perspective
@@ -110,7 +111,10 @@ The pipeline consists of the following steps:
 * Unwarp the image and superimpose on original frames
 
 The output video of applying the pipeline to the project video is in
-project_output.mp4.
+project_output1.mp4.
+
+![gif](output_images/output.gif)
+
 
 
 ## Challenges and Improvements
@@ -119,5 +123,6 @@ changes on the road. It is important to set the correct threshold values to obta
 an image that highlights the lines on the road. Threshold alone performed well
 on the project video but a major improvement would be to implement a better
 error checking algorithm to discard bad frames while maintaining an accurate
-representation of the lane. Sum of squares error can be applied to discard bad frames and make the pipeline more robust. I will continue improving the pipeline
+representation of the lane. Sum of squares error can be applied to discard bad
+frames and make the pipeline more robust. I will continue improving the pipeline
 and test different methods.
