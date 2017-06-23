@@ -94,8 +94,6 @@ After obtaining a fit to the left and right lines on the road, we can use these
 values to calculate the curvature and position of the lane. We use the curvature formula using scaled values for the pixel line fit to match actual measurement in meters. The same scaling is applyied when calculating the position of the vehicle
 by computing the center of the lane in relationship to the absolute center of the image assuming that the camera is right at the center of the car.
 
-![Combined Thresholds](output_images/sliding_window.png)
-
 ## Unwarp Detection
 The last step is to unwarp the processed image to have the original perspective
 and drawing the detected lane area with the computed curvature and position.
